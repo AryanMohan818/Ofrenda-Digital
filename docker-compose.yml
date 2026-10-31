@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ofrenda-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ofrenda_digital
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - GEMMA_MODEL=gemma2:2b
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+      - ELEVENLABS_VOICE_ID=${ELEVENLABS_VOICE_ID:-21m00Tcm4TlvDq8ikWAM}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

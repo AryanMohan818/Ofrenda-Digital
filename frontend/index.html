@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ofrenda Digital — Local Memory Sanctuary</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Papel Picado Banner across top -->
+  <header class="papel-picado">
+    <div class="flag pink">💀</div>
+    <div class="flag orange">🌼</div>
+    <div class="flag purple">🕯️</div>
+    <div class="flag blue">🕊️</div>
+    <div class="flag yellow">✨</div>
+    <div class="flag red">🎺</div>
+    <div class="flag green">🌹</div>
+    <div class="flag pink">💀</div>
+  </header>
+
+  <div class="container">
+    <div class="hero-title">
+      <h1>Ofrenda Digital</h1>
+      <p class="subtitle">An Offline Sanctuary Powered by Google's Gemma & Día de los Muertos Lore</p>
+      <div class="offline-badge">
+        <span class="pulse-dot"></span> 100% Local Inference &bull; Zero Cloud Leakage
+      </div>
+    </div>
+
+    <div class="altar-layout">
+      <!-- Input Panel: Crafting the Offering -->
+      <section class="panel form-panel">
+        <h2 class="panel-heading">Place an Offering on the Altar</h2>
+        <form id="memorial-form">
+          <div class="form-group">
+            <label for="name">Name of the Loved One or Ancestor *</label>
+            <input type="text" id="name" required placeholder="e.g., Abuela Elena, Sparky, Ada Lovelace">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="relation">Relationship</label>
+              <input type="text" id="relation" placeholder="e.g., Grandmother, Childhood Pet, Mentor">
+            </div>
+            <div class="form-group col">
+              <label for="years">Years Remembered</label>
+              <input type="text" id="years" placeholder="e.g., 1938 – 2021">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="photo">Memorial Photo (Optional)</label>
+            <input type="file" id="photo" accept="image/*">
+          </div>
+
+          <div class="form-group">
+            <label for="memories">Cherished Memories, Lessons & Quirks *</label>
+            <textarea id="memories" rows="3" required placeholder="What made them laugh? Their wisdom, a warm afternoon, their signature phrases..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="foods">Favorite Foods / Treats</label>
+              <input type="text" id="foods" placeholder="e.g., Hot chocolate, tamales, honey crisp apples">
+            </div>
+            <div class="form-group col">
+              <label for="music">Favorite Song / Melodies</label>
+              <input type="text" id="music" placeholder="e.g., Cielito Lindo, classical violin, birdsong">
+            </div>
+          </div>
+
+          <button type="submit" id="summon-btn" class="glow-button">
+            <span class="btn-icon">🕯️</span> Light the Candles & Summon Remembrance
+          </button>
+        </form>
+      </section>
+
+      <!-- The Digital Altar (Visualizer) -->
+      <section class="panel altar-panel">
+        <div class="candle-row top-candles">
+          <div class="candle candle-1"><div class="flame"></div></div>
+          <div class="candle candle-2"><div class="flame"></div></div>
+          <div class="candle candle-3"><div class="flame"></div></div>
+        </div>
+
+        <div class="altar-frame">
+          <div class="photo-placeholder" id="altar-photo-container">
+            <span class="photo-icon" id="photo-fallback-icon">🕊️</span>
+            <img id="altar-photo" src="" alt="Memorial Photo" class="hidden">
+          </div>
+          <h3 id="display-name" class="altar-name">Waiting for Offering...</h3>
+          <p id="display-years" class="altar-dates"></p>
+        </div>
+
+        <!-- Offerings Shelf -->
+        <div class="offerings-shelf">
+          <div class="offering-item" title="Pan de Muerto">🍞</div>
+          <div class="offering-item" title="Cempasúchil Marigold">🌼</div>
+          <div class="offering-item" title="Agua y Sal">🏺</div>
+          <div class="offering-item" title="Calaverita de Azúcar">💀</div>
+          <div class="offering-item" title="Favorite Songs">🎶</div>
+        </div>
+
+        <!-- Remembrance Scroll -->
+        <div class="remembrance-scroll">
+          <div class="scroll-header">
+            <h4>Eulogy & Blessing from the Beyond</h4>
+            <div class="audio-controls hidden" id="audio-bar">
+              <button id="narrate-btn" class="narrate-pill" title="Listen to Eulogy">
+                🔊 Listen
+              </button>
+            </div>
+          </div>
+          <div id="loading-spinner" class="spinner-container hidden">
+            <div class="cempasuchil-spinner">🌼</div>
+            <p class="whisper-text">Gemma is weaving the marigold petals of memory...</p>
+          </div>
+          <div id="remembrance-text" class="scroll-body">
+            <em>"When you remember me, I walk beside you again."</em>
+            <br><br>
+            Fill the offering on the left and illuminate the candles to generate a personalized Día de los Muertos eulogy powered by your local open-weight model.
+          </div>
+        </div>
+
+        <div class="candle-row bottom-candles">
+          <div class="candle candle-4"><div class="flame"></div></div>
+          <div class="candle candle-5"><div class="flame"></div></div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Ghost in the Machine Challenge &bull; Built with Google Gemma (Open-Weight), FastAPI & Docker &bull; Preserving oral history offline & in private.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
