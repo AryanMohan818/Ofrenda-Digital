@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import requests
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -120,5 +121,10 @@ def voice_remembrance(text: str):
     except Exception:
         return {"audio_url": None, "use_browser_speech": True}
 
-# Serve the static frontend
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+# Resolve the frontend directory whether running locally or inside Docker
+BASE_DIR = Path(__file__).resolve().parent
+FRONTEND_DIR = BASE_DIR.parent / "frontend"
+if not FRONTEND_DIR.exists():
+    FRONTEND_DIR = Path("/app/frontend")
+
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
